@@ -1,6 +1,6 @@
 mountpoints:
   /:
-    url: "https://author-p166252-e1766978.adobeaemcloud.com/bin/franklin.delivery/Adobe-DevX/aldi-demo/main"
+    url: "https://author-p166252-e1766978.adobeaemcloud.com/bin/franklin.delivery/Adobe-DevX/aldi-store-xcom/main"
     type: "markup"
     suffix: ".html"
 folders:
