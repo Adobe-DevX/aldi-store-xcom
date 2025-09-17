@@ -162,8 +162,8 @@ li.nav-drop img {
 }
 
 header nav .nav-brand img {
-  width: 128px;
-  height: auto;
+  width: auto;
+  height: 5rem;
 }
 
 /* sections */
