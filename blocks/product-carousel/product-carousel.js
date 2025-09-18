@@ -102,11 +102,11 @@ export default async function decorate(block) {
   const updateCarousel = () => {
     const translateX = -currentIndex * (280 + 16); // 280px item width + 16px gap
     $wrapper.style.transform = `translateX(${translateX}px)`;
-    
+
     // Update navigation buttons
     $prevBtn.disabled = currentIndex === 0;
     $nextBtn.disabled = currentIndex >= maxIndex;
-    
+
     // Update dots
     updateDots();
   };
@@ -115,7 +115,7 @@ export default async function decorate(block) {
   const updateDots = () => {
     $dots.innerHTML = '';
     const totalDots = Math.ceil(totalItems / itemsPerView);
-    
+
     for (let i = 0; i < totalDots; i++) {
       const dot = document.createElement('button');
       dot.className = `product-carousel__dot ${i === Math.floor(currentIndex / itemsPerView) ? 'active' : ''}`;
@@ -160,10 +160,10 @@ export default async function decorate(block) {
   $wrapper.addEventListener('touchend', (e) => {
     if (!isDragging) return;
     isDragging = false;
-    
+
     const endX = e.changedTouches[0].clientX;
     const diff = startX - endX;
-    
+
     if (Math.abs(diff) > 50) { // Minimum swipe distance
       if (diff > 0 && currentIndex < maxIndex) {
         // Swipe left - next
@@ -203,23 +203,23 @@ export default async function decorate(block) {
         ProductActions: (ctx) => {
           const actionsWrapper = document.createElement('div');
           actionsWrapper.className = 'product-carousel__actions product-discovery-product-actions';
-          
+
           // Add to Cart Button
           const addToCartBtn = getAddToCartButton(ctx.product);
           addToCartBtn.className = 'product-discovery-product-actions__add-to-cart';
-          
+
           // Wishlist Button
           const $wishlistToggle = document.createElement('div');
           $wishlistToggle.classList.add('product-discovery-product-actions__wishlist-toggle');
           wishlistRender.render(WishlistToggle, {
             product: ctx.product,
           })($wishlistToggle);
-          
+
           actionsWrapper.appendChild(addToCartBtn);
           actionsWrapper.appendChild($wishlistToggle);
           ctx.replaceWith(actionsWrapper);
         },
-        
+
         Thumbnail: (ctx) => {
           const { item, defaultImageProps } = ctx;
           const img = document.createElement('img');
@@ -228,14 +228,14 @@ export default async function decorate(block) {
           img.loading = 'lazy';
           return img;
         },
-        
+
         Title: (ctx) => {
           const title = document.createElement('div');
           title.className = 'product-carousel__item-title';
           title.textContent = ctx.item.name || '';
           return title;
         },
-        
+
         Price: (ctx) => {
           const price = document.createElement('div');
           price.className = 'product-carousel__item-price';
@@ -250,11 +250,10 @@ export default async function decorate(block) {
       const items = $wrapper.querySelectorAll('.product-carousel__item');
       totalItems = items.length;
       maxIndex = Math.max(0, totalItems - itemsPerView);
-      
+
       // Update initial state
       updateCarousel();
     }, 100);
-
   } catch (error) {
     console.error('Error rendering product carousel:', error);
   }
