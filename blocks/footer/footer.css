@@ -32,7 +32,7 @@
   cursor: pointer;
   border-radius: 6px;
   z-index: 10;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
   transition: all 0.2s ease;
 }
 
@@ -50,7 +50,7 @@
   color: #1e3a8a;
   font-size: 16px;
   font-weight: 700;
-  margin: 0 0 20px 0;
+  margin: 0 0 20px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -76,10 +76,6 @@
   border-bottom: 1px solid #e5e5e5;
   transition: color 0.2s ease;
   font-weight: 400;
-}
-
-.footer-links a:hover {
-  color: #1e3a8a;
 }
 
 .footer-links a::after {
@@ -196,6 +192,10 @@
   color: #1e3a8a;
 }
 
+.footer-links a:hover {
+  color: #1e3a8a;
+}
+
 .footer-sitemap {
   text-align: center;
   color: #000;
@@ -221,7 +221,7 @@
   font-size: 20px;
   transition: all 0.2s ease;
   z-index: 10;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
 }
 
 .footer-scroll-top:hover {
@@ -239,12 +239,12 @@
   .footer {
     padding: 40px 16px 20px;
   }
-  
+
   .footer-container {
     grid-template-columns: 1fr;
     gap: 40px;
   }
-  
+
   .footer-feedback-button {
     position: static;
     writing-mode: horizontal-tb;
@@ -252,27 +252,27 @@
     align-self: flex-start;
     padding: 12px 20px;
   }
-  
+
   .footer-scroll-top {
     position: static;
     align-self: flex-end;
     margin-top: 30px;
   }
-  
+
   .footer-legal-links {
     flex-direction: column;
     gap: 12px;
     text-align: center;
   }
-  
+
   .footer-payment-methods {
     justify-content: center;
   }
-  
+
   .footer-social-media {
     justify-content: center;
   }
-  
+
   .footer-legal {
     margin-top: 30px;
     padding-top: 20px;
