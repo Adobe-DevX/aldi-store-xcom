@@ -395,9 +395,23 @@
       },
       {
         "component": "richtext",
+        "name": "socialMediaLinks",
+        "value": "",
+        "label": "Social Media Links",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
         "name": "legalLinks",
         "value": "",
         "label": "Legal Links",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "feedbackText",
+        "value": "Feedback",
+        "label": "Feedback Button Text",
         "valueType": "string"
       }
     ]
@@ -435,6 +449,33 @@
         "value": "",
         "label": "Text",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "product-carousel",
+    "fields": [
+      {
+        "component": "text",
+        "name": "urlPath",
+        "label": "URL Path",
+        "valueType": "string",
+        "description": "Category URL Path for products to display in carousel"
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Carousel Title",
+        "valueType": "string",
+        "description": "Title to display above the carousel"
+      },
+      {
+        "component": "number",
+        "name": "maxProducts",
+        "label": "Maximum Products",
+        "valueType": "number",
+        "description": "Maximum number of products to show in carousel",
+        "default": 10
       }
     ]
   },
