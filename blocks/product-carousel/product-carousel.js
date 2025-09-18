@@ -1,20 +1,16 @@
 import ProductList from '@dropins/storefront-product-discovery/containers/ProductList.js';
 import { render as provider } from '@dropins/storefront-product-discovery/render.js';
 import { Button, Icon, provider as UI } from '@dropins/tools/components.js';
-// Wishlist Dropin
-import { WishlistToggle } from '@dropins/storefront-wishlist/containers/WishlistToggle.js';
-import { render as wishlistRender } from '@dropins/storefront-wishlist/render.js';
 // Cart Dropin
 import * as cartApi from '@dropins/storefront-cart/api.js';
 import { readBlockConfig } from '../../scripts/aem.js';
-import { fetchPlaceholders, rootLink } from '../../scripts/commerce.js';
+import { rootLink } from '../../scripts/commerce.js';
 
 // Initializers
 import '../../scripts/initializers/search.js';
 import '../../scripts/initializers/wishlist.js';
 
 export default async function decorate(block) {
-  const labels = await fetchPlaceholders();
   const config = readBlockConfig(block);
 
   // Create carousel structure
@@ -87,6 +83,16 @@ export default async function decorate(block) {
   let totalItems = 0;
   let maxIndex = 0;
 
+  // Update carousel position
+  const updateCarousel = () => {
+    const translateX = -currentIndex * (200 + 16); // 200px item width + 16px gap
+    $wrapper.style.transform = `translateX(${translateX}px)`;
+
+    // Update navigation buttons
+    $prevBtn.disabled = currentIndex === 0;
+    $nextBtn.disabled = currentIndex >= maxIndex;
+  };
+
   // Update items per view based on screen size - single row only
   const updateItemsPerView = () => {
     const width = window.innerWidth;
@@ -101,17 +107,6 @@ export default async function decorate(block) {
     }
     updateCarousel();
   };
-
-  // Update carousel position
-  const updateCarousel = () => {
-    const translateX = -currentIndex * (200 + 16); // 200px item width + 16px gap
-    $wrapper.style.transform = `translateX(${translateX}px)`;
-    
-    // Update navigation buttons
-    $prevBtn.disabled = currentIndex === 0;
-    $nextBtn.disabled = currentIndex >= maxIndex;
-  };
-
 
   // Navigation event listeners
   $prevBtn.addEventListener('click', () => {
@@ -187,19 +182,19 @@ export default async function decorate(block) {
       // Disable sorting and filtering for carousel
       sort: [],
       filter: [],
-        slots: {
+      slots: {
         ProductActions: (ctx) => {
           const actionsWrapper = document.createElement('div');
           actionsWrapper.className = 'product-carousel__actions product-discovery-product-actions';
-          
+
           // Add to Cart Button
           const addToCartBtn = getAddToCartButton(ctx.product);
           addToCartBtn.className = 'product-discovery-product-actions__add-to-cart';
-          
+
           actionsWrapper.appendChild(addToCartBtn);
           ctx.replaceWith(actionsWrapper);
         },
-        
+
         Thumbnail: (ctx) => {
           const { item, defaultImageProps } = ctx;
           const img = document.createElement('img');
@@ -209,28 +204,28 @@ export default async function decorate(block) {
           img.className = 'product-carousel__item-image';
           return img;
         },
-        
+
         Title: (ctx) => {
           const title = document.createElement('div');
           title.className = 'product-carousel__item-title';
           title.textContent = ctx.item.name || '';
           return title;
         },
-        
+
         Price: (ctx) => {
           const price = document.createElement('div');
           price.className = 'product-carousel__item-price';
           price.textContent = ctx.item.price?.formatted || '';
           return price;
         },
-        
+
         Brand: (ctx) => {
           const brand = document.createElement('div');
           brand.className = 'product-carousel__item-brand';
           brand.textContent = ctx.item.brand || '';
           return brand;
         },
-        
+
         Quantity: (ctx) => {
           const quantity = document.createElement('div');
           quantity.className = 'product-carousel__item-quantity';
@@ -245,13 +240,13 @@ export default async function decorate(block) {
       const items = $wrapper.querySelectorAll('.product-carousel__item');
       totalItems = items.length;
       maxIndex = Math.max(0, totalItems - itemsPerView);
-      
+
       // Hide any sorting controls that might have been rendered
       const sortControls = block.querySelectorAll('.sort-controls, .sort-dropdown, .sort-select, .sort-by, .product-list-sort, .search-sort, [class*="sort"], [class*="Sort"]');
-      sortControls.forEach(control => {
+      sortControls.forEach((control) => {
         control.style.display = 'none';
       });
-      
+
       // Update initial state
       updateCarousel();
     }, 100);

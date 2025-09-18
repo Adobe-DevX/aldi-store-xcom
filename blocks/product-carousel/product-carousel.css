@@ -53,7 +53,7 @@ a.product-carousel__show-all {
   height: 400px;
   background: white;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
   overflow: hidden;
   scroll-snap-align: start;
   margin-bottom: 0;
@@ -160,7 +160,7 @@ a.product-carousel__show-all {
   cursor: pointer;
   z-index: 10;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
 }
 
 .product-carousel__nav:hover {
@@ -223,8 +223,7 @@ a.product-carousel__show-all {
 .product-carousel [class*="grid"],
 .product-carousel [class*="list"] {
   display: flex !important;
-  flex-wrap: nowrap !important;
-  flex-direction: row !important;
+  flex-flow: row nowrap !important;
 }
 
 /* Ensure all product items stay in single row */
@@ -268,6 +267,7 @@ a.product-carousel__show-all {
 @media (max-width: 480px) {
   .product-carousel__container {
     height: 370px; /* Adjust height for small mobile */
+    padding: 0 0.5rem;
   }
   
   .product-carousel__item {
@@ -281,10 +281,5 @@ a.product-carousel__show-all {
   
   .product-carousel__wrapper {
     padding: 0 1rem;
-  }
-  
-  
-  .product-carousel__container {
-    padding: 0 0.5rem;
   }
 }
