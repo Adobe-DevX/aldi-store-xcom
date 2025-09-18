@@ -20,7 +20,10 @@ export default async function decorate(block) {
   // Create carousel structure
   const fragment = document.createRange().createContextualFragment(`
     <div class="product-carousel">
-      ${config.title ? `<h2 class="product-carousel__title">${config.title}</h2>` : ''}
+      <div class="product-carousel__header">
+        <h2 class="product-carousel__title">${config.title || 'Featured Products'}</h2>
+        <a href="#" class="product-carousel__show-all">Show All ></a>
+      </div>
       <div class="product-carousel__container">
         <button class="product-carousel__nav product-carousel__nav--prev" aria-label="Previous products">
           <svg viewBox="0 0 24 24">
@@ -34,14 +37,13 @@ export default async function decorate(block) {
           </svg>
         </button>
       </div>
-      <div class="product-carousel__dots"></div>
     </div>
   `);
 
   const $wrapper = fragment.querySelector('.product-carousel__wrapper');
   const $prevBtn = fragment.querySelector('.product-carousel__nav--prev');
   const $nextBtn = fragment.querySelector('.product-carousel__nav--next');
-  const $dots = fragment.querySelector('.product-carousel__dots');
+  const $showAllLink = fragment.querySelector('.product-carousel__show-all');
 
   block.innerHTML = '';
   block.appendChild(fragment);
@@ -49,6 +51,8 @@ export default async function decorate(block) {
   // Add category url path to block for enrichment
   if (config.urlpath) {
     block.dataset.category = config.urlpath;
+    // Set the "Show All" link to the category page
+    $showAllLink.href = rootLink(`/category/${config.urlpath}`);
   }
 
   const categoryPathConfig = config.urlpath ? { categoryPath: config.urlpath } : {};
@@ -83,7 +87,7 @@ export default async function decorate(block) {
   let totalItems = 0;
   let maxIndex = 0;
 
-  // Update items per view based on screen size
+  // Update items per view based on screen size - single row only
   const updateItemsPerView = () => {
     const width = window.innerWidth;
     if (width < 480) {
@@ -100,33 +104,14 @@ export default async function decorate(block) {
 
   // Update carousel position
   const updateCarousel = () => {
-    const translateX = -currentIndex * (280 + 16); // 280px item width + 16px gap
+    const translateX = -currentIndex * (200 + 16); // 200px item width + 16px gap
     $wrapper.style.transform = `translateX(${translateX}px)`;
-
+    
     // Update navigation buttons
     $prevBtn.disabled = currentIndex === 0;
     $nextBtn.disabled = currentIndex >= maxIndex;
-
-    // Update dots
-    updateDots();
   };
 
-  // Update dots
-  const updateDots = () => {
-    $dots.innerHTML = '';
-    const totalDots = Math.ceil(totalItems / itemsPerView);
-
-    for (let i = 0; i < totalDots; i++) {
-      const dot = document.createElement('button');
-      dot.className = `product-carousel__dot ${i === Math.floor(currentIndex / itemsPerView) ? 'active' : ''}`;
-      dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
-      dot.addEventListener('click', () => {
-        currentIndex = i * itemsPerView;
-        updateCarousel();
-      });
-      $dots.appendChild(dot);
-    }
-  };
 
   // Navigation event listeners
   $prevBtn.addEventListener('click', () => {
@@ -199,48 +184,58 @@ export default async function decorate(block) {
       routeProduct: (product) => rootLink(`/products/${product.urlKey}/${product.sku}`),
       ...categoryPathConfig,
       limit: maxProducts,
-      slots: {
+      // Disable sorting and filtering for carousel
+      sort: [],
+      filter: [],
+        slots: {
         ProductActions: (ctx) => {
           const actionsWrapper = document.createElement('div');
           actionsWrapper.className = 'product-carousel__actions product-discovery-product-actions';
-
+          
           // Add to Cart Button
           const addToCartBtn = getAddToCartButton(ctx.product);
           addToCartBtn.className = 'product-discovery-product-actions__add-to-cart';
-
-          // Wishlist Button
-          const $wishlistToggle = document.createElement('div');
-          $wishlistToggle.classList.add('product-discovery-product-actions__wishlist-toggle');
-          wishlistRender.render(WishlistToggle, {
-            product: ctx.product,
-          })($wishlistToggle);
-
+          
           actionsWrapper.appendChild(addToCartBtn);
-          actionsWrapper.appendChild($wishlistToggle);
           ctx.replaceWith(actionsWrapper);
         },
-
+        
         Thumbnail: (ctx) => {
           const { item, defaultImageProps } = ctx;
           const img = document.createElement('img');
           img.src = item.imageUrl || defaultImageProps.src;
           img.alt = item.name || 'Product image';
           img.loading = 'lazy';
+          img.className = 'product-carousel__item-image';
           return img;
         },
-
+        
         Title: (ctx) => {
           const title = document.createElement('div');
           title.className = 'product-carousel__item-title';
           title.textContent = ctx.item.name || '';
           return title;
         },
-
+        
         Price: (ctx) => {
           const price = document.createElement('div');
           price.className = 'product-carousel__item-price';
           price.textContent = ctx.item.price?.formatted || '';
           return price;
+        },
+        
+        Brand: (ctx) => {
+          const brand = document.createElement('div');
+          brand.className = 'product-carousel__item-brand';
+          brand.textContent = ctx.item.brand || '';
+          return brand;
+        },
+        
+        Quantity: (ctx) => {
+          const quantity = document.createElement('div');
+          quantity.className = 'product-carousel__item-quantity';
+          quantity.textContent = ctx.item.quantity || '';
+          return quantity;
         },
       },
     })($wrapper);
@@ -250,7 +245,13 @@ export default async function decorate(block) {
       const items = $wrapper.querySelectorAll('.product-carousel__item');
       totalItems = items.length;
       maxIndex = Math.max(0, totalItems - itemsPerView);
-
+      
+      // Hide any sorting controls that might have been rendered
+      const sortControls = block.querySelectorAll('.sort-controls, .sort-dropdown, .sort-select, .sort-by, .product-list-sort, .search-sort, [class*="sort"], [class*="Sort"]');
+      sortControls.forEach(control => {
+        control.style.display = 'none';
+      });
+      
       // Update initial state
       updateCarousel();
     }, 100);
