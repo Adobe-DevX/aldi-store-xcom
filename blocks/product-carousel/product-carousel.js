@@ -62,7 +62,7 @@ export default async function decorate(block) {
     if (product.typename === 'ComplexProductView') {
       const button = document.createElement('div');
       UI.render(Button, {
-        children: labels.Global?.AddProductToCart,
+        children: 'Add',
         icon: Icon({ source: 'Cart' }),
         onClick: () => {
           window.location.href = rootLink(`/products/${product.urlKey}/${product.sku}`);
@@ -73,7 +73,7 @@ export default async function decorate(block) {
     }
     const button = document.createElement('div');
     UI.render(Button, {
-      children: labels.Global?.AddProductToCart,
+      children: 'Add',
       icon: Icon({ source: 'Cart' }),
       onClick: () => cartApi.addProductsToCart([{ sku: product.sku, quantity: 1 }]),
       variant: 'primary',

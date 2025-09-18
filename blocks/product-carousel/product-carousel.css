@@ -1,6 +1,6 @@
 .product-carousel {
-  background-color: #f8f9fa;
-  padding: 2rem 0;
+  /* background-color: #f8f9fa; */
+  padding: 1rem 0;
   margin: 2rem 0;
 }
 
@@ -13,17 +13,18 @@
 }
 
 .product-carousel__title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #1a365d;
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: #00005f;
   margin: 0;
+  text-transform: uppercase;
 }
 
-.product-carousel__show-all {
-  color: #1a365d;
+a.product-carousel__show-all {
+  color: #0d3a93 !important;
   text-decoration: none;
   font-weight: 500;
-  font-size: 0.9rem;
+  font-size: 2rem !important;
 }
 
 .product-carousel__show-all:hover {
@@ -34,7 +35,7 @@
   position: relative;
   overflow: hidden;
   padding: 0 1rem;
-  height: 400px; /* Fixed height to ensure single row */
+  height: 450px; /* Increased height to accommodate add to cart button */
 }
 
 .product-carousel__wrapper {
@@ -49,12 +50,15 @@
 .product-carousel__item {
   flex: 0 0 auto;
   width: 200px;
+  height: 400px;
   background: white;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   scroll-snap-align: start;
   margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .product-carousel__item-image {
@@ -67,6 +71,9 @@
 
 .product-carousel__item-content {
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .product-carousel__item-brand {
@@ -109,6 +116,8 @@
 .product-carousel__actions {
   display: flex;
   justify-content: center;
+  margin-top: auto;
+  padding-top: 0.5rem;
 }
 
 .product-carousel__actions .product-discovery-product-actions__add-to-cart button {
@@ -229,11 +238,12 @@
 /* Mobile responsive */
 @media (max-width: 768px) {
   .product-carousel__container {
-    height: 350px; /* Adjust height for mobile */
+    height: 400px; /* Adjust height for mobile */
   }
   
   .product-carousel__item {
     width: 180px;
+    height: 350px;
   }
   
   .product-carousel__item-image {
@@ -257,11 +267,12 @@
 
 @media (max-width: 480px) {
   .product-carousel__container {
-    height: 320px; /* Adjust height for small mobile */
+    height: 370px; /* Adjust height for small mobile */
   }
   
   .product-carousel__item {
     width: 160px;
+    height: 320px;
   }
   
   .product-carousel__item-image {
@@ -272,9 +283,6 @@
     padding: 0 1rem;
   }
   
-  .product-carousel__header {
-    padding: 0 0.5rem;
-  }
   
   .product-carousel__container {
     padding: 0 0.5rem;
