@@ -1,219 +1,172 @@
-export default function decorate(block) {
-  // Create footer container
-  const footer = document.createElement('footer');
-  footer.className = 'footer';
+import { getRootPath, isMultistore } from '@dropins/tools/lib/aem/configs.js';
+// Dropin Components
+import {
+  Button,
+  provider as UI,
+} from '@dropins/tools/components.js';
 
-  // Create feedback button
-  const feedbackButton = document.createElement('button');
-  feedbackButton.className = 'footer-feedback-button';
-  feedbackButton.textContent = 'Feedback';
-  feedbackButton.addEventListener('click', () => {
-    // Handle feedback button click
-    // TODO: Implement feedback functionality
-  });
+// Block-level
+import createModal from '../modal/modal.js';
+import { getMetadata } from '../../scripts/aem.js';
+import { loadFragment } from '../fragment/fragment.js';
 
-  // Create scroll to top button
-  const scrollTopButton = document.createElement('button');
-  scrollTopButton.className = 'footer-scroll-top';
-  scrollTopButton.setAttribute('aria-label', 'Scroll to top');
-  scrollTopButton.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+/**
+ * Toggles all storeSelector sections
+ * @param {Element} sections The container element
+ * @param {Boolean} expanded Whether the element should be expanded or collapsed
+ */
+function toggleStoreDropdown(sections, expanded = false) {
+  sections
+    .querySelectorAll('.storeview-modal .default-content-wrapper > ul > li')
+    .forEach((section) => {
+      section.setAttribute('aria-expanded', expanded);
+    });
+}
 
-  // Create main footer container
-  const footerContainer = document.createElement('div');
-  footerContainer.className = 'footer-container';
+/**
+ * loads and decorates the footer
+ * @param {Element} block The footer block element
+ */
+export default async function decorate(block) {
+  const root = getRootPath();
+  // Load Footer as Fragment
+  const footerMeta = getMetadata('footer');
+  const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
+  const fragment = await loadFragment(footerPath);
 
-  // Create the three main columns
-  const aboutUsColumn = createAboutUsColumn();
-  const helpColumn = createHelpColumn();
-  const paymentSocialColumn = createPaymentSocialColumn();
+  // decorate footer DOM
+  block.textContent = '';
+  const footer = document.createElement('div');
 
-  footerContainer.appendChild(aboutUsColumn);
-  footerContainer.appendChild(helpColumn);
-  footerContainer.appendChild(paymentSocialColumn);
+  // Footer content - Store Switcher
+  if (isMultistore()) {
+    footer.innerHTML = `
+      <div class="storeview-switcher-button"></div>
+    `;
 
-  // Create legal links section
-  const legalSection = createLegalSection();
+    // Container and component refs
+    let modal;
 
-  // Assemble footer
-  footer.appendChild(feedbackButton);
-  footer.appendChild(footerContainer);
-  footer.appendChild(legalSection);
-  footer.appendChild(scrollTopButton);
+    // Modal Actions
+    const showModal = async (content) => {
+      modal = await createModal([content]);
+      modal.showModal();
+    };
 
-  // Replace block content
-  block.innerHTML = '';
-  block.appendChild(footer);
+    // Rendering the Store Switcher Modal Content
+    const $storeSwitcherBtn = footer.querySelector(
+      '.storeview-switcher-button',
+    );
 
-  // Add scroll to top functionality
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-      scrollTopButton.style.display = 'flex';
-    } else {
-      scrollTopButton.style.display = 'none';
+    // Store Switcher Modal Content
+    const storeSwitcherPath = '/store-switcher';
+    let fragmentStoreView;
+
+    try {
+      fragmentStoreView = await loadFragment(storeSwitcherPath);
+      if (!fragmentStoreView) throw new Error(`Footer does not render due to Store Switcher fragment (${storeSwitcherPath}) not found`);
+    } catch (error) {
+      console.error('Error loading store switcher fragment:', error);
+      return;
     }
-  });
 
-  // Initially hide scroll to top button
-  scrollTopButton.style.display = 'none';
-}
+    // Store Switcher Modal Content
+    const storeSwitcher = document.createElement('div');
 
-// Helper function to create About Us column
-function createAboutUsColumn() {
-  const column = document.createElement('div');
-  column.className = 'footer-column';
+    // Return Storename from stores-switcher
+    const selected = [...fragmentStoreView.querySelectorAll('a')].find((a) => {
+      const url = new URL(a.href);
+      return url.pathname.startsWith(root);
+    });
 
-  const heading = document.createElement('h3');
-  heading.textContent = 'About Us';
-  column.appendChild(heading);
+    storeSwitcher.id = 'storeview-modal';
+    while (fragmentStoreView.firstElementChild) {
+      storeSwitcher.append(fragmentStoreView.firstElementChild);
+    }
 
-  const linksList = document.createElement('ul');
-  linksList.className = 'footer-links';
+    // create classes for storeview modal sections
+    const classes = ['storeview-title', 'storeview-list'];
+    classes.forEach((c, i) => {
+      const section = storeSwitcher.children[i];
+      if (section) section.classList.add(`storeview-modal-${c}`);
+    });
 
-  const aboutUsLinks = [
-    'About ALDI',
-    'Email Sign Up',
-    'Mobile App',
-    'Grand Openings',
-    'Careers',
-    'ALDI Corporate',
-  ];
+    // Store Switcher Modal Content - Store View Title
+    const storeViewTitle = storeSwitcher.querySelector('.storeview-modal-storeview-title');
+    const title = storeViewTitle.querySelector('h3');
+    if (title) {
+      title.className = '';
+      title.closest('h3').classList.add('storeview-modal-storeview-title');
+      title.setAttribute('tabindex', '0');
+    }
 
-  aboutUsLinks.forEach((linkText) => {
-    const listItem = document.createElement('li');
-    const link = document.createElement('a');
-    link.href = '#';
-    link.textContent = linkText;
-    listItem.appendChild(link);
-    linksList.appendChild(listItem);
-  });
+    // Storeview List
+    const storeViewList = storeSwitcher.querySelector('.storeview-modal-storeview-list');
 
-  column.appendChild(linksList);
-  return column;
-}
+    if (storeViewList && storeViewList.children.length) {
+      // Add storeview-selection class to parent UL
+      storeViewList
+        .querySelectorAll(':scope .default-content-wrapper > ul')
+        .forEach((storeView) => {
+          if (storeView.querySelector('ul')) storeView.classList.add('storeview-selection');
+        });
 
-// Helper function to create Help column
-function createHelpColumn() {
-  const column = document.createElement('div');
-  column.className = 'footer-column';
+      // if multiple stores exist per region, add class storeviews and click events for accordion
+      storeViewList.querySelectorAll('.default-content-wrapper > ul > li > ul').forEach((storeRegion) => {
+        if (storeRegion.children.length > 1) {
+          if (storeRegion.querySelector('ul')) storeRegion.classList.add('storeviews');
 
-  const heading = document.createElement('h3');
-  heading.textContent = 'Help';
-  column.appendChild(heading);
+          // Accessiblity: addeventlistener for 'click' and keyboard event and tab indexes
+          storeViewList.querySelectorAll(':scope li').forEach((storeView) => {
+            const link = storeView.closest('a');
+            if (link) link.setAttribute('tabindex', '0');
+            storeView.addEventListener('keydown', (e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                const expanded = storeView.getAttribute('aria-expanded') === 'true';
+                toggleStoreDropdown(storeViewList);
+                storeView.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+              }
+            });
+            storeView.addEventListener('click', () => {
+              const expanded = storeView.getAttribute('aria-expanded') === 'true';
+              toggleStoreDropdown(storeViewList);
+              storeView.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+            });
+          });
+        }
+      });
 
-  const linksList = document.createElement('ul');
-  linksList.className = 'footer-links';
+      // If only one storeview link in region, convert parent UL into the li and remove the child UL
+      storeViewList.querySelectorAll('.default-content-wrapper > ul > li > ul').forEach((storeRegion) => {
+        const li = storeRegion.closest('li');
 
-  const helpLinks = [
-    'Help Center',
-    'FAQs',
-    'Gift Cards',
-    'Return Policy',
-    'Warranties & Manuals',
-    'Product Recalls',
-  ];
+        if (storeRegion.children.length <= 1) {
+          li.classList.add('storeview-single-store');
+          const ulParent = li.closest('ul');
+          const replacedChild = (storeRegion.firstElementChild);
+          replacedChild.className = 'storeview-single-store';
 
-  helpLinks.forEach((linkText) => {
-    const listItem = document.createElement('li');
-    const link = document.createElement('a');
-    link.href = '#';
-    link.textContent = linkText;
-    listItem.appendChild(link);
-    linksList.appendChild(listItem);
-  });
+          ulParent.replaceChild(replacedChild, li);
+          ulParent.setAttribute('tabindex', '0');
+        } else {
+          li.classList.add('storeview-multiple-stores');
+          li.setAttribute('tabindex', '0');
+        }
+      });
 
-  column.appendChild(linksList);
-  return column;
-}
+      UI.render(Button, {
+        children: `${selected.text}`,
+        'data-testid': 'storeview-switcher-button',
+        className: 'storeview-switcher-button',
+        size: 'medium',
+        variant: 'teritary',
+        onClick: () => {
+          showModal(storeSwitcher);
+        },
+      })($storeSwitcherBtn);
+    }
+  }
+  while (fragment.firstElementChild) footer.append(fragment.firstElementChild);
 
-// Helper function to create Payment Methods and Social Media column
-function createPaymentSocialColumn() {
-  const column = document.createElement('div');
-  column.className = 'footer-column';
-
-  // Payment Methods section
-  const paymentHeading = document.createElement('h3');
-  paymentHeading.textContent = 'Payment Methods';
-  column.appendChild(paymentHeading);
-
-  const paymentMethods = document.createElement('div');
-  paymentMethods.className = 'footer-payment-methods';
-
-  const paymentTypes = ['VISA', 'Mastercard', 'DISCOVER', 'AMERICAN EXPRESS', 'SNAP', 'Apple Pay'];
-  paymentTypes.forEach((type) => {
-    const paymentDiv = document.createElement('div');
-    paymentDiv.className = `payment-method ${type.toLowerCase().replace(' ', '-')}`;
-    paymentDiv.textContent = type;
-    paymentMethods.appendChild(paymentDiv);
-  });
-
-  column.appendChild(paymentMethods);
-
-  // Follow Us section
-  const socialHeading = document.createElement('h3');
-  socialHeading.textContent = 'Follow Us';
-  socialHeading.style.marginTop = '30px';
-  column.appendChild(socialHeading);
-
-  const socialMedia = document.createElement('div');
-  socialMedia.className = 'footer-social-media';
-
-  const socialPlatforms = [
-    { name: 'Facebook', icon: 'f' },
-    { name: 'X', icon: 'X' },
-    { name: 'Instagram', icon: '📷' },
-    { name: 'YouTube', icon: '▶' },
-    { name: 'TikTok', icon: '♪' },
-    { name: 'Pinterest', icon: 'P' },
-  ];
-
-  socialPlatforms.forEach((platform) => {
-    const socialLink = document.createElement('a');
-    socialLink.className = 'social-icon';
-    socialLink.href = '#';
-    socialLink.setAttribute('aria-label', platform.name);
-    socialLink.textContent = platform.icon;
-    socialMedia.appendChild(socialLink);
-  });
-
-  column.appendChild(socialMedia);
-  return column;
-}
-
-// Helper function to create legal section
-function createLegalSection() {
-  const legalSection = document.createElement('div');
-  legalSection.className = 'footer-legal';
-
-  const legalLinks = document.createElement('div');
-  legalLinks.className = 'footer-legal-links';
-
-  const legalLinkTexts = [
-    'Cookie Preferences',
-    'Online Privacy Notice',
-    'Terms of Use',
-    'Security Policy',
-    'Your Privacy Choices',
-    'CA Supply Chains Act',
-    'CA Cookware Disclosure',
-    'CA Cleaning Disclosure',
-    'ALDI International',
-  ];
-
-  legalLinkTexts.forEach((text) => {
-    const link = document.createElement('a');
-    link.href = '#';
-    link.textContent = text;
-    legalLinks.appendChild(link);
-  });
-
-  const sitemap = document.createElement('div');
-  sitemap.className = 'footer-sitemap';
-  sitemap.textContent = 'Sitemap';
-
-  legalSection.appendChild(legalLinks);
-  legalSection.appendChild(sitemap);
-
-  return legalSection;
+  block.append(footer);
 }
