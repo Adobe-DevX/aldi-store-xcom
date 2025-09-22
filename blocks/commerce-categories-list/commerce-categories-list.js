@@ -174,7 +174,9 @@ export default async function decorate(block) {
     }
 
     // Filter out the parent category if it's included in results
-    const filteredCategories = categories.filter((cat) => !parentCategoryId || cat.id !== parentCategoryId);
+    const filteredCategories = categories.filter(
+      (cat) => !parentCategoryId || cat.id !== parentCategoryId,
+    );
 
     // Create category cards
     filteredCategories.forEach((category) => {
