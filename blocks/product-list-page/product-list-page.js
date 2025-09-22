@@ -23,10 +23,6 @@ export default async function decorate(block) {
   const fragment = document.createRange().createContextualFragment(`
     <div class="search__input"></div>
     <div class="search__wrapper">
-      <div class="search__left-column">
-        <div class="search__result-info"></div>
-        <div class="search__facets"></div>
-      </div>
       <div class="search__right-column">
         <div class="search__product-list"></div>
       </div>
