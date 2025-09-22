@@ -26,8 +26,7 @@
       "product-recommendations",
       "teaser-aldi",
       "footer-aldi",
-      "commerce-categories-list",
-      "product-teaser"
+      "commerce-categories-list"
     ]
   },
   {
@@ -38,11 +37,14 @@
       "button",
       "title",
       "hero",
+      "teaser-aldi",
       "cards",
       "columns",
       "fragment",
       "product-teaser",
-      "product-recommendations"
+      "product-recommendations",
+      "footer-aldi",
+      "commerce-categories-list"
     ]
   },
   {
@@ -53,13 +55,16 @@
       "button",
       "title",
       "hero",
+      "teaser-aldi",
       "cards",
       "columns",
       "fragment",
       "enrichment",
       "product-teaser",
       "product-recommendations",
-      "product-list-page"
+      "product-list-page",
+      "footer-aldi",
+      "commerce-categories-list"
     ]
   },
   {
@@ -70,13 +75,16 @@
       "button",
       "title",
       "hero",
+      "teaser-aldi",
       "cards",
       "columns",
       "fragment",
       "enrichment",
       "product-details",
       "product-teaser",
-      "product-recommendations"
+      "product-recommendations",
+      "footer-aldi",
+      "commerce-categories-list"
     ]
   },
   {
@@ -90,7 +98,11 @@
       "cards",
       "columns",
       "fragment",
-      "commerce-mini-cart"
+      "commerce-mini-cart",
+      "teaser-aldi",
+      "footer-aldi",
+      "commerce-categories-list",
+      "product-teaser"
     ]
   },
   {
@@ -101,12 +113,15 @@
       "button",
       "title",
       "hero",
+      "teaser-aldi",
       "cards",
       "columns",
       "fragment",
       "commerce-cart",
       "product-teaser",
-      "product-recommendations"
+      "product-recommendations",
+      "footer-aldi",
+      "commerce-categories-list"
     ]
   },
   {
@@ -129,7 +144,10 @@
       "commerce-order-product-list",
       "commerce-order-returns",
       "product-teaser",
-      "product-recommendations"
+      "product-recommendations",
+      "teaser-aldi",
+      "footer-aldi",
+      "commerce-categories-list"
     ]
   },
   {
@@ -143,7 +161,11 @@
       "cards",
       "columns",
       "fragment",
-      "commerce-checkout"
+      "commerce-checkout",
+      "teaser-aldi",
+      "footer-aldi",
+      "commerce-categories-list",
+      "product-teaser"
     ]
   },
   {
@@ -157,7 +179,11 @@
       "cards",
       "columns",
       "fragment",
-      "commerce-search-order"
+      "commerce-search-order",
+      "teaser-aldi",
+      "footer-aldi",
+      "commerce-categories-list",
+      "product-teaser"
     ]
   },
   {
@@ -171,7 +197,11 @@
       "cards",
       "columns",
       "fragment",
-      "product-list-page"
+      "product-list-page",
+      "teaser-aldi",
+      "footer-aldi",
+      "commerce-categories-list",
+      "product-teaser"
     ]
   },
   {
@@ -185,7 +215,11 @@
       "cards",
       "columns",
       "fragment",
-      "commerce-login"
+      "commerce-login",
+      "teaser-aldi",
+      "footer-aldi",
+      "commerce-categories-list",
+      "product-teaser"
     ]
   },
   {
@@ -199,7 +233,11 @@
       "cards",
       "columns",
       "fragment",
-      "commerce-forgot-password"
+      "commerce-forgot-password",
+      "teaser-aldi",
+      "footer-aldi",
+      "commerce-categories-list",
+      "product-teaser"
     ]
   },
   {
@@ -213,7 +251,11 @@
       "cards",
       "columns",
       "fragment",
-      "commerce-create-account"
+      "commerce-create-account",
+      "teaser-aldi",
+      "footer-aldi",
+      "commerce-categories-list",
+      "product-teaser"
     ]
   },
   {
@@ -232,7 +274,11 @@
       "commerce-orders-list",
       "commerce-addresses",
       "commerce-customer-information",
-      "commerce-returns-list"
+      "commerce-returns-list",
+      "teaser-aldi",
+      "footer-aldi",
+      "commerce-categories-list",
+      "product-teaser"
     ]
   },
   {
@@ -247,7 +293,11 @@
       "columns",
       "fragment",
       "commerce-account-sidebar",
-      "commerce-orders-list"
+      "commerce-orders-list",
+      "teaser-aldi",
+      "footer-aldi",
+      "commerce-categories-list",
+      "product-teaser"
     ]
   },
   {
@@ -262,7 +312,11 @@
       "columns",
       "fragment",
       "commerce-account-sidebar",
-      "commerce-addresses"
+      "commerce-addresses",
+      "teaser-aldi",
+      "footer-aldi",
+      "commerce-categories-list",
+      "product-teaser"
     ]
   },
   {
@@ -277,7 +331,11 @@
       "columns",
       "fragment",
       "commerce-account-sidebar",
-      "commerce-returns-list"
+      "commerce-returns-list",
+      "teaser-aldi",
+      "footer-aldi",
+      "commerce-categories-list",
+      "product-teaser"
     ]
   },
   {
@@ -298,7 +356,11 @@
       "commerce-customer-details",
       "commerce-order-cost-summary",
       "commerce-order-product-list",
-      "commerce-order-returns"
+      "commerce-order-returns",
+      "teaser-aldi",
+      "footer-aldi",
+      "commerce-categories-list",
+      "product-teaser"
     ]
   },
   {
@@ -312,7 +374,11 @@
       "cards",
       "columns",
       "fragment",
-      "commerce-search-order"
+      "commerce-search-order",
+      "teaser-aldi",
+      "footer-aldi",
+      "commerce-categories-list",
+      "product-teaser"
     ]
   },
   {
@@ -330,7 +396,11 @@
       "commerce-order-status",
       "commerce-shipping-status",
       "commerce-customer-details",
-      "commerce-order-product-list"
+      "commerce-order-product-list",
+      "teaser-aldi",
+      "footer-aldi",
+      "commerce-categories-list",
+      "product-teaser"
     ]
   },
   {
@@ -344,7 +414,11 @@
       "cards",
       "columns",
       "fragment",
-      "commerce-create-return"
+      "commerce-create-return",
+      "teaser-aldi",
+      "footer-aldi",
+      "commerce-categories-list",
+      "product-teaser"
     ]
   },
   {
@@ -358,7 +432,11 @@
       "cards",
       "columns",
       "fragment",
-      "commerce-confirm-account"
+      "commerce-confirm-account",
+      "teaser-aldi",
+      "footer-aldi",
+      "commerce-categories-list",
+      "product-teaser"
     ]
   },
   {
@@ -372,7 +450,11 @@
       "cards",
       "columns",
       "fragment",
-      "commerce-create-password"
+      "commerce-create-password",
+      "teaser-aldi",
+      "footer-aldi",
+      "commerce-categories-list",
+      "product-teaser"
     ]
   },
   {
@@ -386,7 +468,11 @@
       "cards",
       "columns",
       "fragment",
-      "commerce-wishlist"
+      "commerce-wishlist",
+      "teaser-aldi",
+      "footer-aldi",
+      "commerce-categories-list",
+      "product-teaser"
     ]
   },
   {
