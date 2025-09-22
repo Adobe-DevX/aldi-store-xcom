@@ -72,6 +72,7 @@ export default async function decorate(block) {
     provider.render(ProductList, {
       routeProduct: (product) => rootLink(`/products/${product.urlKey}/${product.sku}`),
       ...categoryPathConfig,
+      pageSize: 50, // Show around 50 products per page
       slots: {
         ProductActions: (ctx) => {
           const actionsWrapper = document.createElement('div');
