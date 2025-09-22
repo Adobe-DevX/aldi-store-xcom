@@ -1,0 +1,67 @@
+.teaser-aldi{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  border-radius: .5rem;
+  height: 200px;
+}
+
+.teaser-aldi > .teaser-aldi-row-2 a{
+  background-color: unset !important;
+  font-weight: 300 !important;
+}
+
+.teaser-aldi > .teaser-aldi-row-1 p{
+  margin: 15px 30px !important;
+}
+
+.teaser-aldi picture img{
+  width: 100%;
+}
+.teaser-aldi.teaser1{
+  background-color: rgb(0, 0, 95);
+}
+
+.teaser-aldi.teaser2{
+  background-color: rgb(32, 196, 244);
+}
+
+.teaser-aldi.teaser3{
+  background-color: rgb(26, 105, 71);
+}
+
+.teaser-aldi.teaser4{
+  background-color: rgb(0, 0, 95);
+}
+
+.teaser-aldi-row-1{
+  color: rgb(255, 255, 255);
+  justify-content: center;
+  padding: 2rem;
+  justify-content: center;
+}
+.teaser-aldi-row-1 > :nth-child(1){
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 4.25rem;
+}
+
+.teaser-aldi-row-2{
+  color: rgb(255, 255, 255);
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.teaser-aldi-row-3 picture img{
+  height: 200px;
+  object-fit: cover;
+  width: 700px;
+  text-align: center;
+  justify-content: center;
+}
+
+.teaser2 > .teaser-aldi-row-1, .teaser2 > .teaser-aldi-row-2 a{
+  color: rgb(0, 0, 95) !important;
+}
+
