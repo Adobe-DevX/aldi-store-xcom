@@ -40,6 +40,13 @@
           "value": "",
           "label": "Text",
           "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "textClass",
+          "value": "",
+          "label": "Text CSS Class",
+          "valueType": "string"
         }
       ]
     }
