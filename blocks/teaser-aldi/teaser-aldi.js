@@ -1,49 +1,39 @@
 export default function decorate(block) {
-  // Add classes to all div elements for easier identification and styling
-  const divs = block.querySelectorAll('div');
-  
-  divs.forEach((div, index) => {
-    // Skip the wrapper div (first div)
-    if (index === 0) return;
+    // Process the block content
+    const rows = [...block.children];
+    console.log('Found rows:', rows.length, rows);
     
-    // Add specific classes based on content and position
-    switch (index) {
-      case 1:
-        // Title div - "Upcoming ALDI Finds"
-        div.classList.add('teaser-aldi-title');
-        break;
-      case 2:
-        // Subtitle div - "Grab your gear before it's gone."
-        div.classList.add('teaser-aldi-subtitle');
-        break;
-      case 3:
-        // CTA text div - "Shop Now"
-        div.classList.add('teaser-aldi-cta-text');
-        break;
-      case 4:
-        // Button container div
-        div.classList.add('teaser-aldi-button-container');
-        break;
-      case 5:
-        // Image container div
-        div.classList.add('teaser-aldi-image-container');
-        break;
-      case 6:
-        // Additional text div (teaser1) - hide this
-        div.classList.add('teaser-aldi-additional-text');
-        break;
-      default:
-        // Generic class for any additional divs
-        div.classList.add('teaser-aldi-content');
-    }
-  });
-
-  // Handle custom text class if provided
-  const { textClass } = block.dataset;
-  if (textClass) {
-    const textDiv = block.querySelector('.teaser-aldi-subtitle');
-    if (textDiv) {
-      textDiv.classList.add(textClass);
-    }
-  }
+    // Add class for each row based on index
+    rows.forEach((row, index) => {
+        row.classList.add(`teaser-aldi-row-${index + 1}`);
+        
+        // Handle row index 2 (3rd row) - use text content as anchor text in row index 3 and hide
+        if (index === 2) {
+            const textContent = row.textContent.trim();
+            if (textContent) {
+                // Find the anchor tag in row index 3 (4th row)
+                const targetRow = rows[3];
+                if (targetRow) {
+                    const anchorTag = targetRow.querySelector('a');
+                    if (anchorTag) {
+                        anchorTag.textContent = textContent;
+                    }
+                }
+            }
+            // Hide the row
+            row.style.display = 'none';
+        }
+        
+        // Handle row index 5 (6th row) - use text content as class and hide
+        if (index === 5) {
+            const textContent = row.textContent.trim().toLowerCase();
+            if (textContent) {
+                // Convert text to valid CSS class name
+                const className = textContent.replace(/[^a-z0-9]/g, '-');
+                block.classList.add(`${className}`);
+            }
+            // Hide the row
+            row.style.display = 'none';
+        }
+    });
 }
