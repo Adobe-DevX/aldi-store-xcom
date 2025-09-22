@@ -771,3 +771,30 @@ li.nav-drop p, header nav .nav-sections .default-content-wrapper > ul > li a {
     font-size: 17px;
     color: #717785;
 }
+
+.product-carousel__nav {
+  z-index: 1;
+}
+
+.default-content-wrapper {
+    height: 100%;
+    display: flex;
+}
+
+header nav .nav-sections .default-content-wrapper > ul > li {
+    display: flex
+;
+    justify-content: center;
+    align-items: center;
+}
+
+header nav .nav-sections .default-content-wrapper > ul > li:hover,
+header nav .nav-sections .nav-drop[aria-expanded='true'] {
+  background-color: transparent;
+  color: #0d3a93;
+}
+
+li.nav-drop p:hover {
+  color: #0d3a93;
+
+}

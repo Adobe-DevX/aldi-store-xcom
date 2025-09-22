@@ -124,7 +124,8 @@ a.product-carousel__show-all {
   padding-top: 0.5rem;
 }
 
-.product-carousel__actions .product-discovery-product-actions__add-to-cart button {
+.product-carousel__actions .product-discovery-product-actions__add-to-cart button,
+button.dropin-button.dropin-button--medium.dropin-button--primary.dropin-button--with-icon {
     background: transparent;
     color: #1a365d;
     border: none;
@@ -144,6 +145,7 @@ ease;
     letter-spacing: 0;
     margin-bottom: 15px;
 }
+
 
 .product-carousel__actions.product-discovery-product-actions {
     border-top: 1px solid #eee;
@@ -249,7 +251,7 @@ ease;
     border-radius: 26px;
 }
 
-.dropin-product-item-card__image img {
+.dropin-product-item-card__image img, .dropin-product-item-card__image img {
     width: 100%;
     height: 200px;
     border-top-left-radius: 26px;
@@ -273,6 +275,14 @@ ease;
     /* max-height: 25px; */
     height: 200px;
     border-bottom-left-radius: 0;
+}
+
+
+.product-discovery-product-list__grid .dropin-product-item-card {
+    text-align: left;
+    border: 1px solid transparent;
+    width: 200px;
+    border-radius: 26px;
 }
 
 /* Mobile responsive */
@@ -367,6 +377,8 @@ h2.product-carousel__title {
     color: #0d3a93;
     font-size: 18px;
 }
+
+
 @media (max-width: 480px) {
   .product-carousel__container {
     height: 370px; /* Adjust height for small mobile */
@@ -385,4 +397,40 @@ h2.product-carousel__title {
   .product-carousel__wrapper {
     padding: 0 1rem;
   }
+}
+
+.product-discovery-product-list__grid .dropin-product-item-card {
+    text-align: left;
+    border: 1px solid transparent;
+    width: 200px;
+    border-radius: 26px !important;
+}
+
+.dropin-product-item-card__image-container, .dropin-product-item-card__image img{
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 26px;
+    border-top-right-radius: 26px;
+}
+
+.dropin-product-item-card button.dropin-button {
+  background: transparent !important;
+    color: #1a365d;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex
+;
+    align-items: center;
+    gap: 0.25rem;
+    transition: background 0.2s
+ease;
+    min-width: 80px;
+    justify-content: center;
+    letter-spacing: 0;
+    margin-bottom: 15px;
 }
