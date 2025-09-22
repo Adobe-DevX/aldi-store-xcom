@@ -28,8 +28,7 @@
 }
 
 .commerce-categories-list .category-card {
-  border: var(--shape-border-width-1) solid var(--color-neutral-300);
-  border-radius: var(--shape-border-radius-medium);
+  border-radius: 26px;
   background-color: var(--background-color);
   transition: all 0.3s ease;
   overflow: hidden;
@@ -40,12 +39,17 @@
   align-items: center;
   text-align: center;
   padding: var(--spacing-small);
+  border: 2px solid #fff;
+
 }
 
 .commerce-categories-list .category-card:hover {
-  border-color: var(--color-primary-600);
-  box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
-  transform: translateY(-2px);
+  border: 2px solid #0d3a93;
+
+}
+
+.commerce-categories-list .category-card:hover .category-card-title {
+  color: #0d3a93;
 }
 
 .commerce-categories-list .category-card-image {
@@ -90,7 +94,7 @@
 }
 
 .commerce-categories-list .category-card-title {
-  font-size: 1.925rem;
+  font-size: 16px;
   font-weight: 600;
   line-height: 1.2;
   color: var(--color-neutral-900);
@@ -101,6 +105,7 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
 
 .commerce-categories-list .category-card-description {
   font-size: var(--type-body-small-font-size);
@@ -161,21 +166,21 @@
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: var(--spacing-xs);
   }
-  
+
   .commerce-categories-list .category-card-image {
     width: 50px;
     height: 50px;
   }
-  
+
   .commerce-categories-list .category-card-image img {
     width: 25px;
     height: 25px;
   }
-  
+
   .commerce-categories-list .category-card-image .placeholder {
     font-size: 1.25rem;
   }
-  
+
   .commerce-categories-list .category-card-title {
     font-size: 1rem;
   }
@@ -186,21 +191,21 @@
     grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
     gap: var(--spacing-xs);
   }
-  
+
   .commerce-categories-list .category-card-image {
     width: 40px;
     height: 40px;
   }
-  
+
   .commerce-categories-list .category-card-image img {
     width: 20px;
     height: 20px;
   }
-  
+
   .commerce-categories-list .category-card-image .placeholder {
     font-size: 2rem;
   }
-  
+
   .commerce-categories-list .category-card-title {
     font-size: 0.9rem;
   }

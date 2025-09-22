@@ -759,3 +759,15 @@ li
     max-width: 15rem;
     max-height: 15rem;
 }
+
+header nav[aria-expanded='true'] {
+    min-height: 0;
+    overflow: visible;
+    height: 88px;
+    box-shadow: 0 .25rem .25rem #c1c4c740;
+}
+
+li.nav-drop p, header nav .nav-sections .default-content-wrapper > ul > li a {
+    font-size: 17px;
+    color: #717785;
+}

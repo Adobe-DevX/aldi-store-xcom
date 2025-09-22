@@ -358,7 +358,15 @@ h2.product-carousel__title {
     font-size: 26px;
 }
 
+.dropin-picker, a.product-carousel__show-all {
+    display: none;
+}
 
+.dropin-price--bold {
+    font-weight: 900;
+    color: #0d3a93;
+    font-size: 18px;
+}
 @media (max-width: 480px) {
   .product-carousel__container {
     height: 370px; /* Adjust height for small mobile */
