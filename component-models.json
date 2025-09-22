@@ -433,20 +433,6 @@
         "value": "",
         "label": "Social Media Links",
         "valueType": "string"
-      },
-      {
-        "component": "richtext",
-        "name": "legalLinks",
-        "value": "",
-        "label": "Legal Links",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "name": "feedbackText",
-        "value": "Feedback",
-        "label": "Feedback Button Text",
-        "valueType": "string"
       }
     ]
   },
