@@ -1,0 +1,164 @@
+.commerce-categories-list {
+  margin: var(--spacing-large) 0;
+}
+
+.commerce-categories-list .categories-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spacing-medium);
+  margin-top: var(--spacing-medium);
+}
+
+.commerce-categories-list .category-card {
+  border: var(--shape-border-width-1) solid var(--color-neutral-300);
+  border-radius: var(--shape-border-radius-medium);
+  background-color: var(--background-color);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.commerce-categories-list .category-card:hover {
+  border-color: var(--color-primary-600);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.commerce-categories-list .category-card-image {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background-color: var(--color-neutral-100);
+}
+
+.commerce-categories-list .category-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.commerce-categories-list .category-card:hover .category-card-image img {
+  transform: scale(1.05);
+}
+
+.commerce-categories-list .category-card-image .placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-neutral-200);
+  color: var(--color-neutral-600);
+  font-size: var(--type-body-large-font-size);
+  font-weight: var(--type-body-large-font-weight);
+}
+
+.commerce-categories-list .category-card-body {
+  padding: var(--spacing-medium);
+}
+
+.commerce-categories-list .category-card-title {
+  font-size: var(--type-heading-small-font-size);
+  font-weight: var(--type-heading-small-font-weight);
+  line-height: var(--type-heading-small-line-height);
+  color: var(--color-neutral-900);
+  margin: 0 0 var(--spacing-small) 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.commerce-categories-list .category-card-description {
+  font-size: var(--type-body-small-font-size);
+  line-height: var(--type-body-small-line-height);
+  color: var(--color-neutral-700);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.commerce-categories-list .category-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--spacing-small);
+  font-size: var(--type-details-caption-font-size);
+  color: var(--color-neutral-600);
+}
+
+.commerce-categories-list .category-card-count {
+  background-color: var(--color-primary-100);
+  color: var(--color-primary-700);
+  padding: var(--spacing-xs) var(--spacing-small);
+  border-radius: var(--shape-border-radius-small);
+  font-weight: var(--type-details-caption-font-weight);
+}
+
+.commerce-categories-list .loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xbig);
+  color: var(--color-neutral-600);
+}
+
+.commerce-categories-list .loading::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-neutral-300);
+  border-top: 2px solid var(--color-primary-600);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: var(--spacing-small);
+}
+
+.commerce-categories-list .error {
+  padding: var(--spacing-medium);
+  background-color: var(--color-error-50);
+  border: 1px solid var(--color-error-200);
+  border-radius: var(--shape-border-radius-medium);
+  color: var(--color-error-700);
+  text-align: center;
+}
+
+.commerce-categories-list .empty {
+  padding: var(--spacing-xbig);
+  text-align: center;
+  color: var(--color-neutral-600);
+  font-style: italic;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .commerce-categories-list .categories-container {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: var(--spacing-small);
+  }
+  
+  .commerce-categories-list .category-card-image {
+    height: 160px;
+  }
+  
+  .commerce-categories-list .category-card-body {
+    padding: var(--spacing-small);
+  }
+}
+
+@media (max-width: 480px) {
+  .commerce-categories-list .categories-container {
+    grid-template-columns: 1fr;
+  }
+}

@@ -263,6 +263,33 @@
     ]
   },
   {
+    "id": "commerce-categories-list",
+    "fields": [
+      {
+        "component": "textfield",
+        "name": "parent-category-id",
+        "label": "Parent Category ID",
+        "description": "ID of the parent category to fetch subcategories from. Leave empty to fetch root categories.",
+        "valueType": "string"
+      },
+      {
+        "component": "numberfield",
+        "name": "max-categories",
+        "label": "Maximum Categories",
+        "description": "Maximum number of categories to display",
+        "valueType": "number",
+        "value": 12
+      },
+      {
+        "component": "boolean",
+        "name": "show-category-images",
+        "label": "Show Category Images",
+        "description": "Display category images in the cards",
+        "value": true
+      }
+    ]
+  },
+  {
     "id": "commerce-mini-cart",
     "fields": [
       {
@@ -391,6 +418,27 @@
         "name": "paymentMethods",
         "value": "",
         "label": "Payment Methods",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "socialMediaLinks",
+        "value": "",
+        "label": "Social Media Links",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "legalLinks",
+        "value": "",
+        "label": "Legal Links",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "feedbackText",
+        "value": "Feedback",
+        "label": "Feedback Button Text",
         "valueType": "string"
       }
     ]

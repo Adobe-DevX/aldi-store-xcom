@@ -72,6 +72,9 @@
         },
         {
           "...": "../blocks/commerce-checkout/_*.json#/definitions"
+        },
+        {
+          "...": "../blocks/commerce-categories-list/_*.json#/definitions"
         }
       ]
     },
