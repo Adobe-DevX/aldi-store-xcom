@@ -266,14 +266,14 @@
     "id": "commerce-categories-list",
     "fields": [
       {
-        "component": "textfield",
+        "component": "text",
         "name": "parent-category-id",
         "label": "Parent Category ID",
         "description": "ID of the parent category to fetch subcategories from. Leave empty to fetch root categories.",
         "valueType": "string"
       },
       {
-        "component": "numberfield",
+        "component": "number",
         "name": "max-categories",
         "label": "Maximum Categories",
         "description": "Maximum number of categories to display",
@@ -281,7 +281,14 @@
         "value": 6
       },
       {
-        "component": "textfield",
+        "component": "boolean",
+        "name": "show-category-images",
+        "label": "Show Category Images",
+        "description": "Display category images in the cards",
+        "value": true
+      },
+      {
+        "component": "text",
         "name": "title",
         "label": "Title",
         "description": "Title to display above the categories list",
