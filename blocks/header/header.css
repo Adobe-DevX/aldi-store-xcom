@@ -39,6 +39,10 @@ header nav[aria-expanded='true'] {
   min-height: 100dvh;
 }
 
+li.nav-drop p {
+    font-size: 16px;
+}
+
 @media (min-width: 900px) {
   header nav {
     display: flex;
