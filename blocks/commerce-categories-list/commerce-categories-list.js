@@ -87,9 +87,6 @@ function createCategoryCard(category, config) {
     ` : ''}
     <div class="category-card-body">
       <h3 class="category-card-title">${category.name}</h3>
-      <div class="category-card-meta">
-        <span class="category-card-count">Browse products</span>
-      </div>
     </div>
   `;
 
