@@ -23,7 +23,11 @@
       "columns",
       "fragment",
       "product-teaser",
-      "product-recommendations"
+      "product-recommendations",
+      "teaser-aldi",
+      "footer-aldi",
+      "commerce-categories-list",
+      "product-teaser"
     ]
   },
   {
