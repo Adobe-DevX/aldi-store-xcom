@@ -140,7 +140,7 @@ export default async function decorate(block) {
 
   // Extract configuration values
   const parentCategoryId = config['parent-category-id'] || '';
-  const maxCategories = parseInt(config['max-categories']) || 12;
+  const maxCategories = parseInt(config['max-categories'], 10) || 12;
   const showImages = config['show-category-images'] !== false;
   const title = config.title || '';
 

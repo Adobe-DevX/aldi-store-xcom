@@ -339,9 +339,10 @@
                   "model": "commerce-categories-list",
                   "key-value": true,
                   "parent-category-id": "",
-                  "max-categories": 12,
+                  "max-categories": 6,
                   "show-category-images": true,
-                  "show-category-descriptions": false
+                  "show-category-descriptions": false,
+                  "title": ""
                 }
               }
             }
