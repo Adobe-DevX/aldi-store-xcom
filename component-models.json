@@ -263,6 +263,40 @@
     ]
   },
   {
+    "id": "commerce-categories-list",
+    "fields": [
+      {
+        "component": "text",
+        "name": "parent-category-id",
+        "label": "Parent Category ID",
+        "description": "ID of the parent category to fetch subcategories from. Leave empty to fetch root categories.",
+        "valueType": "string"
+      },
+      {
+        "component": "number",
+        "name": "max-categories",
+        "label": "Maximum Categories",
+        "description": "Maximum number of categories to display",
+        "valueType": "number",
+        "value": 6
+      },
+      {
+        "component": "boolean",
+        "name": "show-category-images",
+        "label": "Show Category Images",
+        "description": "Display category images in the cards",
+        "value": true
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "description": "Title to display above the categories list",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "commerce-mini-cart",
     "fields": [
       {
@@ -371,29 +405,7 @@
   },
   {
     "id": "footer-aldi",
-    "fields": [
-      {
-        "component": "richtext",
-        "name": "aboutUsLinks",
-        "value": "",
-        "label": "About Us Links",
-        "valueType": "string"
-      },
-      {
-        "component": "richtext",
-        "name": "helpLinks",
-        "value": "",
-        "label": "Help Links",
-        "valueType": "string"
-      },
-      {
-        "component": "richtext",
-        "name": "paymentMethods",
-        "value": "",
-        "label": "Payment Methods",
-        "valueType": "string"
-      }
-    ]
+    "fields": []
   },
   {
     "id": "fragment",

@@ -1,0 +1,61 @@
+{
+  "definitions": [
+    {
+      "title": "Commerce Categories List",
+      "id": "commerce-categories-list",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Commerce Categories List",
+              "model": "commerce-categories-list",
+              "key-value": true,
+              "parent-category-id": "",
+              "max-categories": 6,
+              "show-category-images": true,
+              "show-category-descriptions": false
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "commerce-categories-list",
+      "fields": [
+        {
+          "component": "text",
+          "name": "parent-category-id",
+          "label": "Parent Category ID",
+          "description": "ID of the parent category to fetch subcategories from. Leave empty to fetch root categories.",
+          "valueType": "string"
+        },
+        {
+          "component": "number",
+          "name": "max-categories",
+          "label": "Maximum Categories",
+          "description": "Maximum number of categories to display",
+          "valueType": "number",
+          "value": 6
+        },
+        {
+          "component": "boolean",
+          "name": "show-category-images",
+          "label": "Show Category Images",
+          "description": "Display category images in the cards",
+          "value": true
+        },
+        {
+          "component": "text",
+          "name": "title",
+          "label": "Title",
+          "description": "Title to display above the categories list",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": []
+}
