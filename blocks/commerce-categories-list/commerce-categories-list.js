@@ -29,7 +29,6 @@ const CATEGORIES_WITH_PARENT_QUERY = `
  * @returns {Promise<Array>} Array of category objects
  */
 async function fetchCategories(parentCategoryId, pageSize = 6) {
-  console.log('fetchCategories called with pageSize:', pageSize);
   try {
     const { fetchGraphQl, setEndpoint, setFetchGraphQlHeaders } = new FetchGraphQL().getMethods();
 
@@ -59,12 +58,9 @@ async function fetchCategories(parentCategoryId, pageSize = 6) {
     }
 
     const categories = data?.categories || [];
-    console.log('Total categories fetched:', categories.length);
 
     // Limit the number of categories if pageSize is specified
-    const limitedCategories = pageSize ? categories.slice(0, pageSize) : categories;
-    console.log('Categories after limiting:', limitedCategories.length);
-    return limitedCategories;
+    return pageSize ? categories.slice(0, pageSize) : categories;
   } catch (error) {
     console.error('Error fetching categories:', error);
     throw error;
@@ -149,12 +145,6 @@ export default async function decorate(block) {
   const showImages = config['show-category-images'] !== false;
   const title = config.title || (parentCategoryId ? 'Categories' : 'Shop by Category');
 
-  // Debug logging
-  console.log('Commerce Categories List Config:', config);
-  console.log('Config max-categories value:', config['max-categories']);
-  console.log('Parsed maxCategories:', maxCategories);
-  console.log('Type of maxCategories:', typeof maxCategories);
-
   // Create container structure
   const container = document.createElement('div');
   container.className = 'categories-container';
@@ -182,13 +172,12 @@ export default async function decorate(block) {
 
   try {
     // Fetch categories
-    console.log('About to call fetchCategories with maxCategories:', maxCategories);
     const categories = await fetchCategories(parentCategoryId, maxCategories);
 
     // Clear loading state but preserve title
     const titleElement = block.querySelector('.commerce-categories-list-title');
     block.innerHTML = '';
-    
+
     // Re-add title if it existed
     if (titleElement) {
       block.appendChild(titleElement);
@@ -219,12 +208,12 @@ export default async function decorate(block) {
     // Clear loading state but preserve title
     const titleElement = block.querySelector('.commerce-categories-list-title');
     block.innerHTML = '';
-    
+
     // Re-add title if it existed
     if (titleElement) {
       block.appendChild(titleElement);
     }
-    
+
     block.appendChild(createErrorState(error.message));
   }
 }
