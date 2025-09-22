@@ -51,100 +51,16 @@
         {
           "component": "reference",
           "valueType": "string",
-          "name": "productImage1",
-          "label": "Product Image 1",
+          "name": "image",
+          "label": "Image",
           "multi": false
         },
         {
           "component": "text",
-          "valueType": "string",
-          "name": "productImage1Alt",
-          "label": "Product Image 1 Alt Text",
-          "value": ""
-        },
-        {
-          "component": "reference",
-          "valueType": "string",
-          "name": "productImage2",
-          "label": "Product Image 2",
-          "multi": false
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "productImage2Alt",
-          "label": "Product Image 2 Alt Text",
-          "value": ""
-        },
-        {
-          "component": "reference",
-          "valueType": "string",
-          "name": "productImage3",
-          "label": "Product Image 3",
-          "multi": false
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "productImage3Alt",
-          "label": "Product Image 3 Alt Text",
-          "value": ""
-        },
-        {
-          "component": "reference",
-          "valueType": "string",
-          "name": "productImage4",
-          "label": "Product Image 4",
-          "multi": false
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "productImage4Alt",
-          "label": "Product Image 4 Alt Text",
-          "value": ""
-        },
-        {
-          "component": "reference",
-          "valueType": "string",
-          "name": "productImage5",
-          "label": "Product Image 5",
-          "multi": false
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "productImage5Alt",
-          "label": "Product Image 5 Alt Text",
-          "value": ""
-        },
-        {
-          "component": "reference",
-          "valueType": "string",
-          "name": "productImage6",
-          "label": "Product Image 6",
-          "multi": false
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "productImage6Alt",
-          "label": "Product Image 6 Alt Text",
-          "value": ""
-        },
-        {
-          "component": "reference",
-          "valueType": "string",
-          "name": "productImage7",
-          "label": "Product Image 7",
-          "multi": false
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "productImage7Alt",
-          "label": "Product Image 7 Alt Text",
-          "value": ""
+          "name": "textClass",
+          "value": "",
+          "label": "Text CSS Class",
+          "valueType": "string"
         }
       ]
     }

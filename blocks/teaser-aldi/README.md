@@ -1,14 +1,14 @@
 # Teaser ALDI Block
 
-A responsive promotional banner block for ALDI Gear products, featuring a split layout with text content and product showcase.
+A promotional banner block for ALDI Gear products, based on the hero block structure.
 
 ## Overview
 
-This block creates a visually appealing promotional banner that matches the wireframe design with:
-- **Left Section**: Dark navy background with title, subtitle, and CTA button
-- **Right Section**: Light beige background with overlapping product images
-- **Diagonal Separator**: Curved line separating the two sections
+This block creates a promotional banner that follows the same pattern as the hero block:
+- **Background Image**: Full-width background image
+- **Text Overlay**: Text content positioned over the background
 - **Responsive Design**: Adapts to mobile, tablet, and desktop viewports
+- **Customizable**: Supports custom CSS classes for text styling
 
 ## Design Assumptions & Placeholders
 
@@ -45,31 +45,31 @@ The product images are positioned using absolute positioning with specific class
 ## Usage
 
 ### Content Structure
-The block expects content in this order:
-1. **First row**: Title, subtitle, and CTA button
-2. **Additional rows**: Product images (up to 7 images)
+The block follows the same structure as the hero block:
+1. **First div**: Background image
+2. **Second div**: Text content (title, subtitle, CTA, etc.)
 
 ### Example HTML Structure
 ```html
 <div class="teaser-aldi">
   <div>
-    <h2>ALDI Gear</h2>
+    <picture>
+      <img src="background-image.jpg" alt="ALDI Gear Background">
+    </picture>
+  </div>
+  <div>
+    <h1>ALDI Gear</h1>
     <p>Grab your gear before it's gone.</p>
-    <a href="/shop">Shop Now</a>
+    <a href="/shop">Shop Now ></a>
   </div>
-  <div>
-    <picture>
-      <img src="product1.jpg" alt="Product 1">
-    </picture>
-  </div>
-  <div>
-    <picture>
-      <img src="product2.jpg" alt="Product 2">
-    </picture>
-  </div>
-  <!-- Additional product images... -->
 </div>
 ```
+
+### Content Structure Logic
+The block:
+- **First div**: Contains the background image (positioned absolutely)
+- **Second div**: Contains text content (gets the `teaser-aldi-text` class or custom class)
+- **Text styling**: Uses the same pattern as hero block with customizable CSS classes
 
 ## Features
 
