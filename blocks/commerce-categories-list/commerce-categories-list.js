@@ -28,7 +28,8 @@ const CATEGORIES_WITH_PARENT_QUERY = `
  * @param {number} pageSize - Maximum number of categories to fetch
  * @returns {Promise<Array>} Array of category objects
  */
-async function fetchCategories(parentCategoryId, pageSize = 12) {
+async function fetchCategories(parentCategoryId, pageSize = 6) {
+  console.log('fetchCategories called with pageSize:', pageSize);
   try {
     const { fetchGraphQl, setEndpoint, setFetchGraphQlHeaders } = new FetchGraphQL().getMethods();
 
@@ -58,9 +59,12 @@ async function fetchCategories(parentCategoryId, pageSize = 12) {
     }
 
     const categories = data?.categories || [];
+    console.log('Total categories fetched:', categories.length);
 
     // Limit the number of categories if pageSize is specified
-    return pageSize ? categories.slice(0, pageSize) : categories;
+    const limitedCategories = pageSize ? categories.slice(0, pageSize) : categories;
+    console.log('Categories after limiting:', limitedCategories.length);
+    return limitedCategories;
   } catch (error) {
     console.error('Error fetching categories:', error);
     throw error;
@@ -140,18 +144,33 @@ export default async function decorate(block) {
 
   // Extract configuration values
   const parentCategoryId = config['parent-category-id'] || '';
-  const maxCategories = parseInt(config['max-categories'], 10) || 12;
+  const maxCategoriesValue = config['max-categories'];
+  const maxCategories = maxCategoriesValue ? parseInt(maxCategoriesValue, 10) : 6;
   const showImages = config['show-category-images'] !== false;
-  const title = config['title'] || (parentCategoryId ? 'Categories' : 'Shop by Category');
+  const title = config.title || (parentCategoryId ? 'Categories' : 'Shop by Category');
+
+  // Debug logging
+  console.log('Commerce Categories List Config:', config);
+  console.log('Config max-categories value:', config['max-categories']);
+  console.log('Parsed maxCategories:', maxCategories);
+  console.log('Type of maxCategories:', typeof maxCategories);
 
   // Create container structure
   const container = document.createElement('div');
   container.className = 'categories-container';
 
+  // Add title if provided
+  if (title) {
+    const titleElement = document.createElement('h2');
+    titleElement.className = 'commerce-categories-list-title';
+    titleElement.textContent = title;
+    block.appendChild(titleElement);
+  }
+
   // Clear block content and add loading state
   block.innerHTML = '';
 
-  // Add title if provided
+  // Re-add title if it was provided
   if (title) {
     const titleElement = document.createElement('h2');
     titleElement.className = 'commerce-categories-list-title';
@@ -163,10 +182,17 @@ export default async function decorate(block) {
 
   try {
     // Fetch categories
+    console.log('About to call fetchCategories with maxCategories:', maxCategories);
     const categories = await fetchCategories(parentCategoryId, maxCategories);
 
-    // Clear loading state
+    // Clear loading state but preserve title
+    const titleElement = block.querySelector('.commerce-categories-list-title');
     block.innerHTML = '';
+    
+    // Re-add title if it existed
+    if (titleElement) {
+      block.appendChild(titleElement);
+    }
 
     if (!categories || categories.length === 0) {
       block.appendChild(createEmptyState());
@@ -190,8 +216,15 @@ export default async function decorate(block) {
   } catch (error) {
     console.error('Error in commerce-categories-list block:', error);
 
-    // Clear loading state and show error
+    // Clear loading state but preserve title
+    const titleElement = block.querySelector('.commerce-categories-list-title');
     block.innerHTML = '';
+    
+    // Re-add title if it existed
+    if (titleElement) {
+      block.appendChild(titleElement);
+    }
+    
     block.appendChild(createErrorState(error.message));
   }
 }

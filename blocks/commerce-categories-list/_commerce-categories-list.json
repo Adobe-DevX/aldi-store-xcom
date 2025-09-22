@@ -41,13 +41,6 @@
           "value": 6
         },
         {
-          "component": "boolean",
-          "name": "show-category-images",
-          "label": "Show Category Images",
-          "description": "Display category images in the cards",
-          "value": true
-        },
-        {
           "component": "textfield",
           "name": "title",
           "label": "Title",
