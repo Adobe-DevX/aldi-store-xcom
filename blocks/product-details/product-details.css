@@ -87,7 +87,7 @@
     display: block;
     grid-column: 1 / span 6;
   }
-  
+
   .product-details__right-column {
     grid-column: 7 / span 5;
     padding-top: var(--spacing-medium);
@@ -115,3 +115,41 @@
     grid-column: 1 / span 2;
   }
 }
+
+
+.pdp-header__title {
+    letter-spacing: 0;
+    font-weight: bold;
+    color: #00005f;
+}
+
+
+.pdp-price-range .dropin-price {
+    font-family: 'roboto';
+    font-size: 36px;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.pdp-header__sku {
+    font: var(--type-body-1-default-font);
+    max-width: 600px;
+    color: #a3a3a3;
+}
+
+.pdp-short-description {
+  letter-spacing: 0;
+}
+
+button.dropin-button.dropin-button--medium.dropin-button--primary.dropin-button--with-icon {
+    background: #00005f;
+    border-radius: 10px;
+    padding: 10px;
+    letter-spacing: 0;
+}
+
+p {
+  letter-spacing: 0;
+}
+
+.product-details__gallery.dropin-design {
