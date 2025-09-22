@@ -2,6 +2,23 @@
   margin: var(--spacing-large) 0;
 }
 
+/* Title styling */
+.commerce-categories-list-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 1.5rem 0;
+  text-align: center;
+  line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  .commerce-categories-list-title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+}
+
 .commerce-categories-list .categories-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));

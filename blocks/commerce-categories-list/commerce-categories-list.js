@@ -3,14 +3,13 @@ import { FetchGraphQL } from '@dropins/tools/fetch-graphql.js';
 import { readBlockConfig } from '../../scripts/aem.js';
 import { rootLink } from '../../scripts/commerce.js';
 
-// GraphQL query for fetching categories
-const CATEGORIES_QUERY = `
-  query getCategoriesInCategory($id: String, $pageSize: Int) {
+// GraphQL query for fetching categories with parent ID
+const CATEGORIES_WITH_PARENT_QUERY = `
+  query getCategoriesInCategory($id: String!) {
     categories(
-      ids: $id ? [$id] : null
+      ids: [$id]
       roles: ["show_in_menu"]
       subtree: { depth: 2, startLevel: 1 }
-      pageSize: $pageSize
     ) {
       id
       level
@@ -42,20 +41,26 @@ async function fetchCategories(parentCategoryId, pageSize = 12) {
     setEndpoint(endpoint);
     setFetchGraphQlHeaders((prev) => ({ ...prev, ...getHeaders('cs') }));
 
+    // Use the provided parentCategoryId or default to root category "2"
+    const categoryId = parentCategoryId || '2';
+
+    // Execute GraphQL query with the category ID
+    const variables = { id: categoryId };
+
     // Execute GraphQL query
-    const { data, errors } = await fetchGraphQl(CATEGORIES_QUERY, {
+    const { data, errors } = await fetchGraphQl(CATEGORIES_WITH_PARENT_QUERY, {
       method: 'GET',
-      variables: {
-        id: parentCategoryId || null,
-        pageSize,
-      },
+      variables,
     });
 
     if (errors && errors.length > 0) {
       throw new Error(`GraphQL errors: ${errors.map((e) => e.message).join(', ')}`);
     }
 
-    return data?.categories || [];
+    const categories = data?.categories || [];
+
+    // Limit the number of categories if pageSize is specified
+    return pageSize ? categories.slice(0, pageSize) : categories;
   } catch (error) {
     console.error('Error fetching categories:', error);
     throw error;
@@ -137,6 +142,7 @@ export default async function decorate(block) {
   const parentCategoryId = config['parent-category-id'] || '';
   const maxCategories = parseInt(config['max-categories']) || 12;
   const showImages = config['show-category-images'] !== false;
+  const title = config.title || '';
 
   // Create container structure
   const container = document.createElement('div');
@@ -144,6 +150,15 @@ export default async function decorate(block) {
 
   // Clear block content and add loading state
   block.innerHTML = '';
+
+  // Add title if provided
+  if (title) {
+    const titleElement = document.createElement('h2');
+    titleElement.className = 'commerce-categories-list-title';
+    titleElement.textContent = title;
+    block.appendChild(titleElement);
+  }
+
   block.appendChild(createLoadingState());
 
   try {

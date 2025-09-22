@@ -23,10 +23,7 @@
       "columns",
       "fragment",
       "product-teaser",
-      "product-recommendations",
-      "product-carousel",
-      "commerce-categories-list",
-      "footer-aldi"
+      "product-recommendations"
     ]
   },
   {
@@ -41,10 +38,7 @@
       "columns",
       "fragment",
       "product-teaser",
-      "product-recommendations",
-      "product-carousel",
-      "commerce-categories-list",
-      "footer-aldi"
+      "product-recommendations"
     ]
   },
   {
@@ -61,10 +55,7 @@
       "enrichment",
       "product-teaser",
       "product-recommendations",
-      "product-list-page",
-      "product-carousel",
-      "commerce-categories-list",
-      "footer-aldi"
+      "product-list-page"
     ]
   },
   {
@@ -81,10 +72,7 @@
       "enrichment",
       "product-details",
       "product-teaser",
-      "product-recommendations",
-      "product-carousel",
-      "commerce-categories-list",
-      "footer-aldi"
+      "product-recommendations"
     ]
   },
   {
@@ -114,10 +102,7 @@
       "fragment",
       "commerce-cart",
       "product-teaser",
-      "product-recommendations",
-      "product-carousel",
-      "commerce-categories-list",
-      "footer-aldi"
+      "product-recommendations"
     ]
   },
   {
@@ -140,8 +125,7 @@
       "commerce-order-product-list",
       "commerce-order-returns",
       "product-teaser",
-      "product-recommendations",
-      "footer-aldi"
+      "product-recommendations"
     ]
   },
   {
@@ -169,8 +153,7 @@
       "cards",
       "columns",
       "fragment",
-      "commerce-search-order",
-      "footer-aldi"
+      "commerce-search-order"
     ]
   },
   {
@@ -184,8 +167,7 @@
       "cards",
       "columns",
       "fragment",
-      "product-list-page",
-      "footer-aldi"
+      "product-list-page"
     ]
   },
   {

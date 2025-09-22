@@ -17,8 +17,8 @@ The block can be configured with the following parameters:
 
 ### `parent-category-id` (string, optional)
 - ID of the parent category to fetch subcategories from
-- Leave empty to fetch root categories
-- Default: empty (fetches root categories)
+- Leave empty to fetch categories from the default root category (ID: "2")
+- Default: empty (fetches from root category "2")
 
 ### `max-categories` (number, optional)
 - Maximum number of categories to display
@@ -28,6 +28,10 @@ The block can be configured with the following parameters:
 - Whether to display category images
 - Since category images are not available in the GraphQL schema, this shows a placeholder with the first letter of the category name
 - Default: true
+
+### `title` (string, optional)
+- Title to display above the categories list
+- Default: empty (no title displayed)
 
 ## Usage
 
@@ -40,6 +44,7 @@ The block can be configured with the following parameters:
 ```html
 <div class="block commerce-categories-list" 
      data-block-name="commerce-categories-list"
+     data-title="Browse Our Categories"
      data-parent-category-id="2"
      data-max-categories="8"
      data-show-category-images="true">
@@ -51,12 +56,11 @@ The block can be configured with the following parameters:
 The block uses the following GraphQL query to fetch categories:
 
 ```graphql
-query getCategoriesInCategory($id: String, $pageSize: Int) {
+query getCategoriesInCategory($id: String!) {
   categories(
-    ids: $id ? [$id] : null
+    ids: [$id]
     roles: ["show_in_menu"]
     subtree: { depth: 2, startLevel: 1 }
-    pageSize: $pageSize
   ) {
     id
     level

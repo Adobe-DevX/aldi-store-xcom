@@ -46,6 +46,13 @@
           "label": "Show Category Images",
           "description": "Display category images in the cards",
           "value": true
+        },
+        {
+          "component": "textfield",
+          "name": "title",
+          "label": "Title",
+          "description": "Title to display above the categories list",
+          "valueType": "string"
         }
       ]
     }
