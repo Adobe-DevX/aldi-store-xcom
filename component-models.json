@@ -512,6 +512,53 @@
     ]
   },
   {
+    "id": "teaser-aldi",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title",
+        "value": "ALDI Gear"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "subtitle",
+        "label": "Subtitle",
+        "value": "Grab your gear before it's gone."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "ctaText",
+        "label": "CTA Text",
+        "value": "Shop Now"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "ctaLink",
+        "label": "CTA Link",
+        "value": "/shop"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "textClass",
+        "value": "",
+        "label": "Text CSS Class",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "page-metadata",
     "fields": [
       {
