@@ -59,4 +59,13 @@ export default function decorate(block) {
     rows.forEach((row, index) => {
         row.classList.add(`teaser-aldi-row-${index + 1}`);
     });
+    
+    // Switch rows 1 and 2 at the end
+    if (rows.length >= 3) {
+        const row1 = rows[1];
+        const row2 = rows[2];
+        
+        // Insert row2 before row1
+        block.insertBefore(row2, row1);
+    }
 }
