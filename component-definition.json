@@ -341,8 +341,7 @@
                   "parent-category-id": "",
                   "max-categories": 6,
                   "show-category-images": true,
-                  "show-category-descriptions": false,
-                  "title": ""
+                  "show-category-descriptions": false
                 }
               }
             }

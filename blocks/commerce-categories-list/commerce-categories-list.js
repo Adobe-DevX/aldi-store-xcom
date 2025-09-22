@@ -142,7 +142,7 @@ export default async function decorate(block) {
   const parentCategoryId = config['parent-category-id'] || '';
   const maxCategories = parseInt(config['max-categories'], 10) || 12;
   const showImages = config['show-category-images'] !== false;
-  const title = config.title || '';
+  const title = config['title'] || (parentCategoryId ? 'Categories' : 'Shop by Category');
 
   // Create container structure
   const container = document.createElement('div');

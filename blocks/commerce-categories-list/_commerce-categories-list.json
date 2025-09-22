@@ -12,7 +12,7 @@
               "model": "commerce-categories-list",
               "key-value": true,
               "parent-category-id": "",
-              "max-categories": 12,
+              "max-categories": 6,
               "show-category-images": true,
               "show-category-descriptions": false
             }
@@ -38,7 +38,7 @@
           "label": "Maximum Categories",
           "description": "Maximum number of categories to display",
           "valueType": "number",
-          "value": 12
+          "value": 6
         },
         {
           "component": "boolean",
