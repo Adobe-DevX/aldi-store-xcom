@@ -779,6 +779,9 @@ li.nav-drop p, header nav .nav-sections .default-content-wrapper > ul > li a {
 .default-content-wrapper {
     height: 100%;
     display: flex;
+    /* RUG */
+        flex-direction: column;
+    /* RUG */
 }
 
 header nav .nav-sections .default-content-wrapper > ul > li {
